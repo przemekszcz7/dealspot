@@ -7,10 +7,8 @@ export default defineConfig(({mode}) => {
   const env = loadEnv(mode, '.', '');
   return {
     plugins: [react(), tailwindcss()],
-    // If deploying to GitHub Pages at https://<USERNAME>.github.io/<REPO>/
-    // set the base to the repo name. AI Studio handles this automatically
-    // but for manual GitHub export it's useful to have it configurable.
-    base: process.env.VITE_BASE_URL || '/',
+    // Use relative paths for assets to avoid 404s on subdirectories like GitHub Pages
+    base: './',
     define: {
       'process.env.GEMINI_API_KEY': JSON.stringify(env.GEMINI_API_KEY),
     },
